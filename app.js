@@ -22,7 +22,7 @@ connectDatabase();
 
 app.use(
   cors({
-    origin: "http://localhost:3000",
+    origin: "https://nxt-shop-jcssuzof3-nnhasan0290.vercel.app",
     credentials: true,
   })
 );
