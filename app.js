@@ -22,7 +22,7 @@ connectDatabase();
 
 app.use(
   cors({
-    origin: "https://nxt-shop-jcssuzof3-nnhasan0290.vercel.app",
+    origin: "https://nxt-shop.vercel.app",
     credentials: true,
   })
 );
