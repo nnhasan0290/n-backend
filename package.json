@@ -1,0 +1,36 @@
+{
+  "name": "next-ecommerce",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nnhasan0290/next-ecommerce.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nnhasan0290/next-ecommerce/issues"
+  },
+  "homepage": "https://github.com/nnhasan0290/next-ecommerce#readme",
+  "dependencies": {
+    "@types/stripe": "^8.0.417",
+    "body-parser": "^1.20.0",
+    "cloudinary": "^1.30.1",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.5.1",
+    "multer": "^1.4.5-lts.1",
+    "nodemon": "^2.0.19",
+    "stripe": "^10.4.0",
+    "validator": "^13.7.0"
+  }
+}
