@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+app.set("trust proxy", 1);
+
 app.use(upload.array());
 
 app.use("/api", productRoutes);
