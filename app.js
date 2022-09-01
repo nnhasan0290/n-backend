@@ -22,8 +22,9 @@ connectDatabase();
 
 app.use(
   cors({
-    origin: "https://nxt-shop.vercel.app",
+    origin: ["https://nxt-shop.vercel.app", "http://localhost:3000"],
     credentials: true,
+    sameSite: "none",
   })
 );
 
