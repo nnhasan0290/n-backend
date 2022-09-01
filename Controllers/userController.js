@@ -41,7 +41,6 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
     .status(200)
     .cookie("token", token, {
       sameSite: "none",
-      secure: true,
     })
     .json({
       success: true,
@@ -52,7 +51,7 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
 
 export const logoutUser = catchAsyncError((req, res, nex) => {
   console.log(req);
-  res.clearCookie("token", { sameSite: "none", secure: true });
+  res.clearCookie("token", { sameSite: "none" });
   res.status(200).json({
     success: true,
     message: "logged out successfully",
