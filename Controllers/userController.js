@@ -7,17 +7,6 @@ export const createUser = catchAsyncError(async (req, res, nex) => {
   if (req.body.password !== req.body.confirmPass) {
     throw { message: "password is not matched", statusCode: 400 };
   }
-  if (!req.body.image) {
-    throw { message: "image should be given", statusCode: 400 };
-  }
-  const upload_img = await cloudinary.uploader.upload(req.body.image, {
-    folder: "Users",
-  });
-  const avatar = {
-    public_id: upload_img.public_id,
-    url: upload_img.secure_url,
-  };
-  req.body.image = avatar;
   const user = await User.create(req.body);
   res.status(200).json({
     success: true,
