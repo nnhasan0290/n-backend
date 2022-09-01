@@ -49,10 +49,13 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
 
 export const logoutUser = catchAsyncError((req, res, nex) => {
   console.log(req);
-  res.status(200).clearCookie("token").json({
-    success: true,
-    message: "logged out successfully",
-  });
+  res
+    .status(200)
+    .cookie("token", null, { expires: new Date(Date.now()) })
+    .json({
+      success: true,
+      message: "logged out successfully",
+    });
 });
 
 //Load user controller
