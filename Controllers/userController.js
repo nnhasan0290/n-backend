@@ -4,11 +4,11 @@ import User from "../Models/userModel.js";
 import jwt from "jsonwebtoken";
 
 export const createUser = catchAsyncError(async (req, res, nex) => {
-  if(req.body.password !== req.body.confirmPass){
-    throw {message: "password is not matched", statusCode: 400};
+  if (req.body.password !== req.body.confirmPass) {
+    throw { message: "password is not matched", statusCode: 400 };
   }
-  if(!req.body.image){
-    throw {message: "image should be given", statusCode: 400};
+  if (!req.body.image) {
+    throw { message: "image should be given", statusCode: 400 };
   }
   const upload_img = await cloudinary.uploader.upload(req.body.image, {
     folder: "Users",
@@ -37,37 +37,34 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
   }
   const token = jwt.sign({ id: user._id }, "sssecret");
 
-  res.status(200).cookie("token", token).json({
+  res.status(200).cookie("token", token, { sameSite: "none" }).json({
     success: true,
     user,
     token,
   });
 });
 
-export const logoutUser = catchAsyncError((req,res,nex) => {
+export const logoutUser = catchAsyncError((req, res, nex) => {
   console.log(req);
-  res.status(200).cookie("token",null).json({
+  res.status(200).cookie("token", null).json({
     success: true,
-    message: "logged out successfully"
-  })
-})
-
-//Load user controller
-export const loadUser = catchAsyncError(async (req, res, nex) => {
- 
-  const {token} = req.cookies;
-  if(!token){
-    throw {message:"user token not found", statusCode:400};
-  }
-  const decoded_data = jwt.verify(token, "sssecret");
-  const user = await User.findById(decoded_data.id);
-  if(!user){
-    throw{message: "user not found", statusCode:400};
-  }
-  res.status(200).json({
-    success: true,
-    user
+    message: "logged out successfully",
   });
 });
 
-
+//Load user controller
+export const loadUser = catchAsyncError(async (req, res, nex) => {
+  const { token } = req.cookies;
+  if (!token) {
+    throw { message: "user token not found", statusCode: 400 };
+  }
+  const decoded_data = jwt.verify(token, "sssecret");
+  const user = await User.findById(decoded_data.id);
+  if (!user) {
+    throw { message: "user not found", statusCode: 400 };
+  }
+  res.status(200).json({
+    success: true,
+    user,
+  });
+});

@@ -24,7 +24,6 @@ app.use(
   cors({
     origin: ["https://nxt-shop.vercel.app", "http://localhost:3000"],
     credentials: true,
-    sameSite: "none",
   })
 );
 
