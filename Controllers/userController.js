@@ -42,7 +42,6 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
     .cookie("token", token, {
       sameSite: "none",
       secure: true,
-      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
     })
     .json({
       success: true,
@@ -53,7 +52,10 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
 
 export const logoutUser = catchAsyncError((req, res, nex) => {
   console.log(req);
-  res.cookie("token", null, { expires: new Date(Date.now()) });
+  res.clearCookie("token", {
+    path: "/",
+    domain: "https://nxt-shop.vercel.app",
+  });
   res.status(200).json({
     success: true,
     message: "logged out successfully",
