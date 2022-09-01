@@ -39,7 +39,11 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
 
   res
     .status(200)
-    .cookie("token", token, { sameSite: "none", secure: true })
+    .cookie("token", token, {
+      sameSite: "none",
+      secure: true,
+      expires: new Date(Date.now() + 24 * 60 * 60 * 1000),
+    })
     .json({
       success: true,
       user,
