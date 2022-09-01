@@ -37,11 +37,14 @@ export const loginUser = catchAsyncError(async (req, res, nex) => {
   }
   const token = jwt.sign({ id: user._id }, "sssecret");
 
-  res.status(200).cookie("token", token, { sameSite: "none" }).json({
-    success: true,
-    user,
-    token,
-  });
+  res
+    .status(200)
+    .cookie("token", token, { sameSite: "none", secure: true })
+    .json({
+      success: true,
+      user,
+      token,
+    });
 });
 
 export const logoutUser = catchAsyncError((req, res, nex) => {
