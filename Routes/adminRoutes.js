@@ -4,11 +4,12 @@ import {
   deleteProduct,
   getAllUser,
 } from "../Controllers/adminController.js";
+import isAuthenticated from "../middlewars/auth.js";
 
 const router = express.Router();
 
 router.route("/admin/products").get(adminAllProduct);
 router.route("/admin/users").get(getAllUser);
-router.route("/admin/product/delete/:id").get(deleteProduct);
+router.route("/admin/product/delete/:id").get(isAuthenticated, deleteProduct);
 
 export default router;
