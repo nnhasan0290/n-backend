@@ -44,18 +44,13 @@ const Product = mongoose.model(
       type: String,
       required: [true, "category is a required field"],
     },
-    user: {
-      type: String,
-      ref: "User",
-      required: [true, "plese enter the user"],
-    },
     reviews: [
       {
         rating: {
           type: Number,
           required: true,
         },
-        subject:{
+        subject: {
           type: String,
           required: true,
         },

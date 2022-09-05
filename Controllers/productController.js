@@ -22,7 +22,6 @@ export const createProduct = catchAsyncError(async (req, res, nex) => {
     });
   }
   req.body.images = imageLinks;
-  req.body.user = req.user.id;
 
   const product = await Product.create(req.body);
   res.send({ success: true, product });
@@ -37,7 +36,7 @@ export const getAllProducts = catchAsyncError(async (req, res, nex) => {
     .categorize();
   const filtered_products = await apiFeature.products;
   const total_products = filtered_products.length;
-   apiFeature.pagination(resultPerPage);
+  apiFeature.pagination(resultPerPage);
   const products = await apiFeature.products.clone();
 
   if (!products.length) {
@@ -51,7 +50,6 @@ export const getAllProducts = catchAsyncError(async (req, res, nex) => {
 });
 
 //Creating new review====================================================================
-
 
 export const createNewReview = catchAsyncError(async (req, res, nex) => {
   const { name, subject, id, rating, comment } = req.body;
@@ -83,14 +81,14 @@ export const createNewReview = catchAsyncError(async (req, res, nex) => {
 
 // getting single product ++++++++++++++++++++++++++++++++++++++++
 
-export const getSingleProduct = catchAsyncError(async (req,res,nex) => {
+export const getSingleProduct = catchAsyncError(async (req, res, nex) => {
   const product = await Product.findById(req.query.id);
-  
-  if(!product){
-    throw {message:"product not found", statusCode: 400};
+
+  if (!product) {
+    throw { message: "product not found", statusCode: 400 };
   }
   res.status(200).json({
     success: true,
-    product
-  })
-})
+    product,
+  });
+});
